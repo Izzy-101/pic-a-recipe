@@ -1,0 +1,16 @@
+ul {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+li {
+    line-height: 1.5em;
+    float: left;
+    width: 50%; 
+    color: rgb(97, 94, 94);
+    padding-right: 4px; 
+}
+button {
+    background-color: #abced4;
+    color: white;
+    border-color: black ;
+}

@@ -1,0 +1,13 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.paperPattern {
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 20px, #abced4 20px, #abced4 22px, transparent 22px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+}

@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 320px;
+  min-height: 100vh;
+  /* background: linear-gradient(to right, rgb(255, 203, 143), rgb(159, 245, 153)); */
+  background-image: url('https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+}
+
+button{
+  cursor: pointer;
+  border: solid 1px;
+}
+
+.center{
+ display: flex;
+ justify-content: center;
+}
+
+
