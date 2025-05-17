@@ -3,8 +3,8 @@ import './ImageLink.css'
 
 const ImageLink = () => {
     return (
-        <div className='container'>
-            <p className='f4 black mt5'>
+        <div>
+            <p className='f4 black mt2'>
                 {'This will detect ingredients in your picture. Give it a try.'}
             </p>
             <div className='center'> 
