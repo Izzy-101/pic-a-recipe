@@ -2,12 +2,12 @@ import React from 'react';
 import './IngredientList.css';
 
 const IngredientList = () => {
-    return (
-        <div className='ba w-20 ma4 paperPattern' style={{ minWidth: '200px', maxWidth:'275px', width: '25vw'}}>
+    return ( 
+        <div className='mv4 ml2 ba w-20 paperPattern'>
             <div>
                 <h5 className='f4 mb0'>Ingredient List</h5>
                 <hr className='w-80 b--black mv0'/> 
-                <ul className='tl mr3' >
+                <ul className='tl mr3'>
                     <li>eggs</li>
                     <li>chickens</li>
                     <li>beef</li>
@@ -28,8 +28,8 @@ const IngredientList = () => {
                     <li>Banana</li>
                 </ul>
             </div>
-            <div className='center pa2'>
-                <input className='w-60 ml3' type='text' placeholder='ingredient' />
+            <div className='center pa2 pb3'>
+                <input className='w-60 ml3' type='text' placeholder='ingredient'/>
                 <button className='w-30 grow link br1'>Add</button>
             </div>
         </div>
