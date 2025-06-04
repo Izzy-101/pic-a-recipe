@@ -1,0 +1,9 @@
+/* center image with the ImageLink input */
+.inv-box{
+    width: 550px;
+}
+.center-img{
+    width: 500px;
+    max-height: 500px; 
+    float: left;
+}
