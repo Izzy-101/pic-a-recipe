@@ -1,31 +1,28 @@
-import React from 'react';
+import {useEffect} from 'react';
 import './IngredientList.css';
 
-const IngredientList = () => {
+const IngredientList = ({dataIngredient}) => {
+    let ul = document.querySelector("ul");
+
+    const createInitialList = () => {
+        dataIngredient.map(ing => {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(ing + " "));
+            ul.appendChild(li);
+        });
+    }
+    //run createInitialList when dataIngredient is updated 
+    useEffect(() =>{
+        createInitialList();
+    },[dataIngredient]);
+
     return ( 
         <div className='mv4 ml2 ba w-20 paperPattern'>
-            <div>
+            <div className='length'>
                 <h5 className='f4 mb0'>Ingredient List</h5>
                 <hr className='w-80 b--black mv0'/> 
                 <ul className='tl mr3'>
-                    <li>eggs</li>
-                    <li>chickens</li>
-                    <li>beef</li>
-                    <li>rice</li>
-                    <li>Ice Cream</li>
-                    <li>Bread</li>
-                    <li>Noodles</li>
-                    <li>Bacon</li>
-                    <li>Lamb</li>
-                    <li>eggs</li>
-                    <li>Bacon</li>
-                    <li>Pork</li>
-                    <li>Corn</li>
-                    <li>Cheese</li>
-                    <li>Carrots</li>
-                    <li>Peas</li>
-                    <li>Spinach</li>
-                    <li>Banana</li>
+                    {/* list is created here */}
                 </ul>
             </div>
             <div className='center pa2 pb3'>

@@ -14,7 +14,7 @@ button{
     color: white;
     border-color: black ;
 }
-.paperPattern {
+.paperPattern{
     min-width: 256px;
     background-color: #fff;
     background-image:
@@ -22,4 +22,7 @@ button{
     linear-gradient(#eee .1em, transparent .1em);
     background-size: 100% 1.2em;
     border-color:#eee;
+}
+.length{
+    min-height: 300px;
 }
