@@ -1,4 +1,3 @@
-import React from 'react';
 import './CreateRecipeButton.css';
 
 const CreateRecipeButton = () => {
