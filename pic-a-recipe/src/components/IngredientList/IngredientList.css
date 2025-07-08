@@ -8,11 +8,20 @@ li{
     width: 50%; 
     color: rgb(97, 94, 94);
     padding-right: 4px; 
+    cursor: pointer;
 }
-button{
+li:hover{
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+.add-bttn{
     background-color: #abced4;
     color: white;
     border-color: black ;
+}
+.delete{
+    text-decoration: line-through;
+    text-decoration-color: red;
 }
 .paperPattern{
     min-width: 256px;
@@ -23,6 +32,6 @@ button{
     background-size: 100% 1.2em;
     border-color:#eee;
 }
-.length{
+.minHeight{
     min-height: 300px;
 }
