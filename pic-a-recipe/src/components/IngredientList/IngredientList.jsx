@@ -13,7 +13,7 @@ const IngredientList = ({dataIngredient, setDataIng}) => {
     }
     //update and add new ingredient to list
     const addList = () => {
-        setDataIng([...dataIngredient, inputValue]);
+        setDataIng([...dataIngredient, inputValue.trim()]);
         setInputValue('');
     }
     const  addListAfterClick = () => {
@@ -27,18 +27,18 @@ const IngredientList = ({dataIngredient, setDataIng}) => {
         }
     }
     //update and filter out the ingredient to be deleted 
-    const deleteListAfterClick = (event) => {
-        setDataIng(dataIngredient.filter(ing => ing !== event.currentTarget.textContent));
+    const deleteListAfterClick = (item) => {
+        setDataIng(dataIngredient.filter((ing, i) => `${ing}-${i}` !== item));
     }
     return ( 
         <div className='mv4 ml2 ba w-20 paperPattern'>
             <div className='minHeight'>
                 <h5 className='f4 mb0'>Ingredient List</h5>
                 <hr className='w-80 b--black mv0'/> 
-                <ul className='tl mr3'>
+                <ul className='tl mr3 listIng'>
                     {dataIngredient.map((ing, i) => {
                         return (
-                        <li key={i} onClick={deleteListAfterClick}>
+                        <li key={`${ing}-${i}`} onClick={() => deleteListAfterClick(`${ing}-${i}`)}>
                             {ing}
                         </li>
                         );
