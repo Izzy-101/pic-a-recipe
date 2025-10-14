@@ -1,8 +1,8 @@
-ul{
+.listIng{
     margin-bottom: 20px;
     overflow: hidden;
 }
-li{
+.listIng > li{
     line-height: 1.5em;
     float: left;
     width: 50%; 
@@ -10,7 +10,7 @@ li{
     padding-right: 4px; 
     cursor: pointer;
 }
-li:hover{
+.listIng > li:hover{
     text-decoration: line-through;
     text-decoration-color: red;
 }
@@ -18,10 +18,6 @@ li:hover{
     background-color: #abced4;
     color: white;
     border-color: black ;
-}
-.delete{
-    text-decoration: line-through;
-    text-decoration-color: red;
 }
 .paperPattern{
     min-width: 256px;
