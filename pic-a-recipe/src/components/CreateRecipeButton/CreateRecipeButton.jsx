@@ -9,46 +9,69 @@ const CreateRecipeButton = ({dataIngredient, dataRecipe, setDataRecipe}) => {
         console.log('Updated dataRecipe:', dataRecipe);
     }, [dataRecipe]); 
 
+    //returns an array of the requested sentences
+    const extractSentences = (str, num) => {
+        const sentenceRegex = /[^.!?]+[.!?]+/g; //captures full sentences with their punctuation
+        const sentences = str.match(sentenceRegex).map(s => s.trim());
+
+        return sentences.slice(0, num);
+    }
+
+    const fetchRecipeData = async (recipe) => {
+        const response = await fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?includeNutrition=true&apiKey=${KEY}`)
+        const dataInfo = await response.json();
+
+        return dataInfo;
+    }
+
+    const extractRecipeData = async (recipe) => {
+        const info = await fetchRecipeData(recipe); //recipe info
+
+        return {
+            info: {
+                prep: info.preparationMinutes === null ? '' : info.preparationMinutes,
+                total: info.readyInMinutes === null ? '' : info.readyInMinutes,
+                cook: info.cookingMinutes === null ? '' : info.cookingMinutes,
+                serving: info.servings === null ? '' : info.servings
+            },
+            nutrition: {
+                calories: info.nutrition.nutrients[0].amount,
+                fat: info.nutrition.nutrients[1].amount,
+                carbohydrates: info.nutrition.nutrients[3].amount,
+                sugar: info.nutrition.nutrients[5].amount,
+                protein: info.nutrition.nutrients[10].amount,
+                fiber: info.nutrition.nutrients[18].amount
+            },
+            ingredients: {
+                ing: info.extendedIngredients.map(ing => {
+                    return ing.original;
+                })
+            },
+            instructions: { 
+                steps: info.instructions === null ? '' : info.instructions
+            },
+            summary: extractSentences(info.summary, 2)
+        }
+    }
     //fetch recipe by ingredients and setDataRecipe
     const handleButtonClick = async () => {
-        try { 
+        try {
             const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&number=10&ranking=1&ignorePantry=true&apiKey=${KEY}`)
-            const recipes = await response.json();
-            const response2 = await fetch(`https://api.spoonacular.com/recipes/${recipes[0].id}/information?includeNutrition=true&apiKey=${KEY}`)
-            const recipeData = await response2.json();
+            const recipeData = await response.json();
 
             const finalDataRecipe = [];
 
-            finalDataRecipe.push({
-                id: recipeData.id,
-                title: recipeData.title,
-                image: recipeData.image,
-                info: {
-                    prep: recipeData.preparationMinutes === null ? '' : recipeData.preparationMinutes,
-                    total: recipeData.readyInMinutes === null ? '' : recipeData.readyInMinutes,
-                    cook: recipeData.cookingMinutes === null ? '' : recipeData.cookingMinutes,
-                    serving: recipeData.servings === null ? '' : recipeData.servings
-                },
-                nutrition: {
-                    calories: recipeData.nutrition.nutrients[0].amount,
-                    fat: recipeData.nutrition.nutrients[1].amount,
-                    carbohydrates: recipeData.nutrition.nutrients[3].amount,
-                    sugar: recipeData.nutrition.nutrients[5].amount,
-                    protein: recipeData.nutrition.nutrients[10].amount,
-                    fiber: recipeData.nutrition.nutrients[18].amount
-                },
-                ingredients: {
-                    ing: recipeData.extendedIngredients.map(ing => {
-                        return ing.original;
-                    })
-                },
-                instructions: { 
-                    steps: recipeData.instructions === null ? '' : recipeData.instructions
-                },
-                summary: recipeData.summary
-            });
-        
+            for (const recipe of recipeData) {
+                const recipeData = await extractRecipeData(recipe);
+                finalDataRecipe.push({
+                id: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+                ...recipeData
+                });
+            }
             setDataRecipe(finalDataRecipe);
+
         } catch(error) {
             console.log('Error handleButtonClick:', error);
         }
