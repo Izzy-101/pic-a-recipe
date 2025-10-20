@@ -1,0 +1,18 @@
+.page-cover{
+    border: solid 2px rgb(153, 132, 102, 0.5);
+    border-top: none;
+    border-left: none;
+    border-radius: 2px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    background: linear-gradient(90deg, rgba(2,0,36,.2) 0%, rgba(0,0,0,.2) 2%, rgba(255,255,255,.2) 3%, rgba(247,254,255,.2) 5%, rgba(0,0,0,.2) 7%, rgba(255,255,255,.2) 13%, rgba(255,255,255,.2) 100%), rgb(139, 0, 0);
+}
+#title-cover{
+    color:  rgb(253, 250, 247);
+    font-size: 40px;
+    font-family: 'Great Vibes', cursive; 
+    bottom: 45%;
+    position: absolute;
+    font-weight: 200;
+    left: 30%;
+}
+
