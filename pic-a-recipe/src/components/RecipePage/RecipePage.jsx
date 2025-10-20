@@ -4,13 +4,19 @@ import parse from 'html-react-parser';
 
 const RecipePage = React.forwardRef(({recipe, number}, ref) => {
   
+  const charLength = (title) => {
+    if(title.length >= 50) {
+      return true;
+    } return false;
+  }
+
   return (
     <div className='page page-shaddow' ref={ref}> 
       {/* HEADER */}
       <div className='food-header'>
         {/* TITLE, SUMMARY, DETAILS */}
         <div>
-          <h2 className='mb0 mt2 tl recipe-title'  id='long'>{recipe.title}</h2>
+          <h2 className='mb0 mt2 tl recipe-title'  id={charLength(recipe.title) ? 'long' : 'short'}>{recipe.title}</h2>
           <p className='mv2 tl lh-copy paragraph'>{parse(recipe.summary.join(' '))}</p>
           <div className='recipe-details'>
             {Object.entries(recipe.info).map(([key, value], i) => (
@@ -56,13 +62,13 @@ const RecipePage = React.forwardRef(({recipe, number}, ref) => {
             <span>{value}</span>
           </span>
         ))}
-    </div>
+      </div>
       {/* FOOTER */}
-      <div>
+      <div id={number%2 === 0 ? 'page-right' : 'page-left'}>
         <div className="page-footer">{number}</div>
       </div>
     </div>
   );
 });
 
-export default RecipePage;  
+export default RecipePage;   
