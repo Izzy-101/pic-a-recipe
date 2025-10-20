@@ -13,22 +13,12 @@ const RecipePage = React.forwardRef(({recipe, number}, ref) => {
           <h2 className='mb0 mt2 tl recipe-title'  id='long'>{recipe.title}</h2>
           <p className='mv2 tl lh-copy paragraph'>{parse(recipe.summary.join(' '))}</p>
           <div className='recipe-details'>
-            <span>
-              <span>Prep: </span>
-              <span>{recipe.info.prep}</span>
-            </span>
-            <span>
-              <span>Total: </span>
-              <span>{recipe.info.total}</span>
-            </span>
-            <span>            
-              <span>Cook: </span>
-              <span>{recipe.info.cook}</span>
-            </span>
-            <span>
-              <span>Servings: </span>
-              <span>{recipe.info.serving}</span>
-            </span>
+            {Object.entries(recipe.info).map(([key, value], i) => (
+              <span key={i} className='bold'>
+                <span>{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
+                <span>{value}</span>
+              </span>
+            ))}
           </div>
         </div>
         {/* IMAGE */}
@@ -42,7 +32,13 @@ const RecipePage = React.forwardRef(({recipe, number}, ref) => {
       <div>
         <h3 className='mv2 tl sub-title'>Ingredients</h3>
         <ul className='tl mv2 ingredients'>
-            <li>{...recipe.ingredients.ing}</li> 
+          {recipe.ingredients.ing.map((ing, i) => {
+              return (
+                <li key={i}>
+                    {ing}
+                </li>
+              );
+          })}
         </ul>
       </div>
       {/* INSTRUCTIONS */}
@@ -54,30 +50,12 @@ const RecipePage = React.forwardRef(({recipe, number}, ref) => {
       </div>
       {/* NUTRITION */}
       <div className='nutrition mr4'>
-        <span>
-            <span>Calories: </span>
-            <span>{recipe.nutrition.calories}</span>
-        </span>
-        <span>
-            <span>Carbohydrates: </span>
-            <span>{recipe.nutrition.carbohydrates}</span>
-        </span>
-        <span>            
-            <span>Protein: </span>
-            <span>{recipe.nutrition.protein}</span>
-        </span>
-        <span>
-            <span>Fat: </span>
-            <span>{recipe.nutrition.fat}</span>
-        </span>
-        <span>
-            <span>Fiber: </span>
-            <span>{recipe.nutrition.fiber}</span>
-        </span>
-        <span>
-            <span>Sugar: </span>
-            <span>{recipe.nutrition.sugar}</span>
-        </span>
+        {Object.entries(recipe.nutrition).map(([key, value], i) => (
+          <span key={i} className='bold'>
+            <span>{key}: </span>
+            <span>{value}</span>
+          </span>
+        ))}
     </div>
       {/* FOOTER */}
       <div>
