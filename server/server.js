@@ -44,7 +44,7 @@ app.post('/clarifai', async (req, res) => {
   };
 
   try {
-    const response = await fetch('https://api.clarifai.com/v2/models/food-item-recognition/outputs', requestOptions);
+    const response = await fetch(`https://api.clarifai.com/v2/users/${USER_ID}/apps/${APP_ID}/models/food-item-recognition/outputs`, requestOptions);
     const data = await response.json();
     res.json(data);
   } catch (error) {
